@@ -29,9 +29,9 @@ function navigateTo(pathname) {
 }
 
 onAuthStateChanged(auth, (user) => {
-  if (user) { // si hay usuario puede permanecer activo(permanece en wall)
+  if (user) { // si hay usuario puede permanecer activo (permanece en wall)
     navigateTo('/wall');
-  } else { // si no, lo mantiene o lleva a la página welcome (no se puede ir a wall)
+  } else { // si no, lo mantiene o lleva a la página home (no se puede ir a wall)
     navigateTo('/');
   }
 });

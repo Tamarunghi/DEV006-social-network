@@ -119,7 +119,7 @@ export function createAccount(navigateTo) {
       alert(`Welcome ${user.displayName}!`);
       navigateTo('/wall');
     }).catch((error) => {
-      alert('Registrateee');
+      alert('Please register');
     });
   });
   return container;

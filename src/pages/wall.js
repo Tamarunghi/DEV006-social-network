@@ -56,6 +56,7 @@ export function wall() {
   container.appendChild(writeAndPost);
   container.appendChild(divposts);
 
+  // CREATE POST
   const createPost = (poster, postId) => {
     // CREAR MODAL OPCIONES
     const modalOptions = document.createElement('dialog');
@@ -165,7 +166,7 @@ export function wall() {
     likesPic.classList.add('likesPic');
     likesPic.setAttribute('src', '/images/Like.png');
     likesLab.classList.add('likesLab');
-    likesLab.textContent = (poster.likes && poster.likes.length) || 0;
+    likesLab.textContent = (poster.likes && poster.likes.length) || 0; // si primera parte es falsa entonces se opta por la segunda, es decir 0
     // likesLab.textContent = poster.likes?.length || 0; // ? si likes no existe q no falle al cargar los posts
 
     // Armar la estructura del nodo
@@ -189,9 +190,6 @@ export function wall() {
     } else {
       menuOptions.style.visibility = 'hidden';
     }
-    // const openModalDelEdit = document.querySelector('.menuOptions');
-    // const modalContainer = document.querySelector('.modalContainer');
-    // const modalClose = document.querySelector('.modalClose');
 
     // Listener para mostrar el diálogo de opciones
     menuOptions.addEventListener('click', (e) => {
@@ -262,7 +260,13 @@ export function wall() {
     }
     // Al dar like hacer cambio de imagen y numero
     likesPic.addEventListener('click', async () => {
-      const { userLiked, likesCount } = await verifyLikes(postId, userEmail());
+      const { userLiked, likesCount } = await verifyLikes(postId, userEmail()); // desestructuración
+
+      // sin desestructuracion
+      // const result = await verifyLikes(postId, userEmail());
+      // const userLiked = result.userLiked;
+      // const likesCount = result.likesCount;
+
       if (userLiked) {
         await dislikeCounter(postId);
         likesPic.setAttribute('src', '/images/Like.png');
@@ -321,10 +325,8 @@ export function wall() {
     console.log(result);
     // Crear el nuevo post y agregarlo al principio
     createPost(data, result.id);
-    textarea.value = '';
+    textarea.value = ' ';
   });
-
-  // damm likes, primero se necesitan 3 cosas: user email, id post, campo likes
 
   // DOMContentLoaded se dispara cuando se ha cargado
   //  completamente el árbol DOM de una página web por
